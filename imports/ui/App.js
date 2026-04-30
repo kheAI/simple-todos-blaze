@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating';
 import { TasksCollection } from "../api/TasksCollection"; 
 import '/imports/api/TasksMethods.js'; // this import in this client UI allows for optimistic execution
 import './App.html';
+import './Task.html';
 
 Template.mainContainer.onCreated(function mainContainerOnCreated() {
   Meteor.subscribe('tasks');
