@@ -36,7 +36,7 @@ Template.mainContainer.helpers({
     return Template.instance().state.get(HIDE_COMPLETED_STRING);
   },
   incompleteCount() {
-    result = "";
+    let result = "";
     if (isUserLoggedInChecker()) {
       const incompleteTasksCount = TasksCollection.find({
         isChecked: { $ne: true },
