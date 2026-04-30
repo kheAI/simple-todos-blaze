@@ -9,7 +9,9 @@
     </header>
 
     <div class="main">
-      {{#if isUserLoggedIn}} {{> form }}
+      {{#if isUserLoggedIn}}
+      <div class="user">{{getUser.username}} 🚪</div>
+      {{> form }}
 
       <div class="filter">
         <button id="hide-completed-button">
