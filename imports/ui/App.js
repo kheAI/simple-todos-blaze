@@ -7,6 +7,8 @@ import "./Task";
 import "./Login.js";
 
 const HIDE_COMPLETED_STRING = "hideCompleted";
+const getUser = () => Meteor.user();
+const isUserLoggedInChecker = () => Boolean(getUser());
 
 Template.mainContainer.onCreated(function mainContainerOnCreated() {
   this.state = new ReactiveDict();
@@ -33,6 +35,9 @@ Template.mainContainer.helpers({
       isChecked: { $ne: true },
     }).count();
     return incompleteTasksCount ? `(${incompleteTasksCount})` : "";
+  },
+  isUserLoggedIn() {
+    return isUserLoggedInChecker();
   },
 });
 
