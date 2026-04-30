@@ -4,6 +4,7 @@ import { TasksCollection } from "../api/TasksCollection";
 import "/imports/api/TasksMethods.js"; // this import in this client UI allows for optimistic execution
 import "./App.html";
 import "./Task";
+import "./Login.js";
 
 const HIDE_COMPLETED_STRING = "hideCompleted";
 
