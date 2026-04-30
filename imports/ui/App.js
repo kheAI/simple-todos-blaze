@@ -15,7 +15,17 @@ Template.mainContainer.onCreated(function mainContainerOnCreated() {
 
 Template.mainContainer.helpers({
   tasks() {
-    return TasksCollection.find({}, { sort: { createdAt: -1, _id: -1 } });
+    const instance = Template.instance();
+    const hideCompleted = instance.state.get(HIDE_COMPLETED_STRING);
+
+    const hideCompletedFilter = { isChecked: { $ne: true } };
+
+    return TasksCollection.find(hideCompleted ? hideCompletedFilter : {}, {
+      sort: { createdAt: -1, _id: -1 },
+    }).fetch();
+  },
+  hideCompleted() {
+    return Template.instance().state.get(HIDE_COMPLETED_STRING);
   },
 });
 
