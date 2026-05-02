@@ -1,35 +1,49 @@
 <template name="mainContainer">
-  <div class="app">
-    <header>
-      <div class="app-bar">
-        <div class="app-header">
-          <h1>📝️ Todo List {{incompleteCount}}</h1>
+  <main class="container">
+    <article>
+      <header>
+        <hgroup>
+          <h1>📝️ Todo List</h1>
+          <p>{{incompleteCount}} tasks remaining</p>
+        </hgroup>
+      </header>
+
+      {{#if isUserLoggedIn}}
+      <div class="grid" style="align-items: center; margin-bottom: 1rem">
+        <mark>Logged in as: <strong>{{getUser.username}}</strong></mark>
+        <div style="text-align: right">
+          <button
+            id="hide-completed-button"
+            class="outline secondary"
+            style="width: auto"
+          >
+            {{#if hideCompleted}} Show All {{else}} Hide Completed {{/if}}
+          </button>
         </div>
       </div>
-    </header>
 
-    <div class="main">
-      {{#if isUserLoggedIn}}
-      <div class="user">{{getUser.username}} 🚪</div>
       {{> form }}
 
-      <div class="filter">
-        <button id="hide-completed-button">
-          {{#if hideCompleted}} Show All {{else}} Hide Completed {{/if}}
-        </button>
-      </div>
-
-      <ul class="tasks">
+      <ul style="list-style: none; padding: 0">
         {{#each tasks}} {{> task}} {{/each}}
       </ul>
-      {{else}} {{> login }} {{/if}}
-    </div>
-  </div>
+      {{else}}
+      <div style="text-align: center; padding: 2rem 0">{{> login }}</div>
+      {{/if}}
+    </article>
+  </main>
 </template>
 
 <template name="form">
   <form class="task-form">
-    <input type="text" name="text" placeholder="Type to add new tasks" />
-    <button type="submit">Add Task</button>
+    <fieldset role="group">
+      <input
+        type="text"
+        name="text"
+        placeholder="Type to add new tasks"
+        required
+      />
+      <input type="submit" value="Add" />
+    </fieldset>
   </form>
 </template>
